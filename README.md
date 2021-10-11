@@ -33,7 +33,7 @@ See Appendix for various details and the corrections of the original Python code
 
 I managed to rewrite the Python code manually in C++ and make it run slower than the jitted Python 3 code compiled with PyPy. I suspect this has something to do with the way I transformed recursions into a two stage iterative process, and that the Python code is part of the PyPy development tests. PyPy is amazing!
 
-Then how come nobody uses it? Consider the main Python strength - its libraries, especially big unique projects such as:
+Then how come nobody uses it? Consider the main Python strength - unique people and big projects:
 
 1. John D. Hunter (R. I. P.) and Matplotlib.
 2. Travis Oliphant and Numpy+Anaconda.
@@ -85,10 +85,11 @@ conda activate pypy
 ```
 
 The [Python code][1] is modified to remove all the pyperf testing clutter:
-```Python
+```python
 import time
 ...
-start = time.perf_counter()
+if __name__ == '__main__':
+    start = time.perf_counter()
     Canvas = PpmCanvas
     #c = Canvas(320,240,'test_raytrace')
     c = Canvas(1920*1,1080*1,'out_pypy')
@@ -149,15 +150,13 @@ class Halfspace:
 ```
 
 The second enhancement concerns the line 217 in [the original code][1]:
-
+```python
 __if candidateT is not None and candidateT > -EPSILON:__
-
-It is better to change it to
-
+```
+It might be better to change it to
+```python
 __if candidateT is not None and candidateT > EPSILON:__
-
-The execution time reduces 5x with no significant decrease of the image quality.
-
-
+```
+The execution time reduces 5x with no significant decrease in the image quality.
 
 
