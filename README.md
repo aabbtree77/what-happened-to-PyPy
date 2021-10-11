@@ -108,9 +108,9 @@ if __name__ == '__main__':
     print(f"Time: {time_elapsed}")
 ```
 
-The test is then performed with "python3 raytrace_mod.py" or [this approach](https://unix.stackexchange.com/questions/375889/unix-command-to-tell-how-much-ram-was-used-during-program-runtime):
+The test is then performed with "python3 bm_raytrace_mod.py" or [this approach](https://unix.stackexchange.com/questions/375889/unix-command-to-tell-how-much-ram-was-used-during-program-runtime):
 ```console
-/usr/bin/time --verbose  python3 raytrace_mod.py
+/usr/bin/time --verbose  python3 bm_raytrace_mod.py
 ```
 to test the memory usage.
 
